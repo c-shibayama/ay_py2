@@ -42,7 +42,7 @@ class TStateValidityCheckerMI(TROSUtil):
 
     self.c= self.TConfig(num_arms=robot.NumArms)
     robot.ConfigureSVC(self.c)
-
+    # because of this, an error occurs
     ra(self.AddSrvP('set_scene_client', '/state_validity_checker/set_planning_scene_diff',
                     ay_util_msgs.srv.SetPlanningSceneDiff, persistent=False, time_out=3.0))
 
