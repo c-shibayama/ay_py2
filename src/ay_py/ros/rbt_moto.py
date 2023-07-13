@@ -238,6 +238,9 @@ class TRobotMotoman(TMultiArmRobot):
 
     with self.control_locker:
       self.actc.traj.send_goal(goal)
+      print("SSSSSSSs")
+      # print("blocking: ", blocking)
+      # comment out? or not
       BlockAction(self.actc.traj, blocking=blocking, duration=t_traj[-1])
 
   '''Stop motion such as FollowQTraj.
@@ -247,7 +250,9 @@ class TRobotMotoman(TMultiArmRobot):
 
     with self.control_locker:
       self.actc.traj.cancel_goal()
-      BlockAction(self.actc.traj, blocking=True, duration=10.0)  #duration does not matter.
+      print("CCCCCCCCc")
+      # comment out
+      # BlockAction(self.actc.traj, blocking=True, duration=10.0)  #duration does not matter.
 
 
   '''Open a gripper.

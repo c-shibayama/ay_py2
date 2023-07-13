@@ -27,6 +27,8 @@ class ROSError(Exception):
   accuracy: accuracy to check duration.
 '''
 def BlockAction(act_client, blocking, duration, accuracy=0.02):
+  # check blocking
+  print("blocking: ", blocking)
   if blocking==False:  return
   if blocking=='time':
     end_time= rospy.Time.now() + rospy.Duration(duration)
@@ -36,6 +38,7 @@ def BlockAction(act_client, blocking, duration, accuracy=0.02):
     return
   if blocking==True:
     if not act_client.wait_for_result():  #timeout=rospy.Duration(duration)
+      # occured this error
       raise ROSError('ctrl','BlockAction: act_client.wait_for_result finished anomaly: [{}].'.format(act_client.get_result()))
     res= act_client.get_result()
     if res.error_code!=0:  #cf. control_msgs/FollowJointTrajectoryActionResult
